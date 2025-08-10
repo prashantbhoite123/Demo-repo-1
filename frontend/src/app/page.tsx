@@ -7,7 +7,7 @@ export default function Home() {
 
       <h2>Hey iam prashant and iam learning git in dept </h2>
       <h3>hey its me prashant and iam a fullstack engineer</h3>
-      
+      <head>hello there iam trying git revert</head>
     </div>
   );
 }
