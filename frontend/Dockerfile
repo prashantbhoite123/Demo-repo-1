@@ -35,12 +35,12 @@
     USER nextjs
     
     # Set environment variables
-    ENV PORT=3000
-    ENV HOSTNAME="0.0.0.0"
+    ENV PORT=$PORT
+    ENV HOSTNAME=$HOSTNAME
     
     # Expose the app port
     EXPOSE 3000
     
     # Start the standalone server
-    CMD ["node", "server.js"]
+    CMD ["npm ", "run","dev"]
     
