@@ -39,8 +39,9 @@
     ENV HOSTNAME=$HOSTNAME
     
     # Expose the app port
-    EXPOSE 3000
+    EXPOSE 3000 8000 5000
     
     # Start the standalone server
-    CMD ["npm ", "run","dev"]
+    CMD ["node", "server.js"]
+
     
