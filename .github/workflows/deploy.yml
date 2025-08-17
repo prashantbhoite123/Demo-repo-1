@@ -101,36 +101,37 @@ jobs:
     if: github.ref == 'refs/heads/feature/ec2-cicd-setup'
     
     steps:
-      - name: Checkout code (with Git history)
+      # 1. Proper checkout with full history
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # This preserves Git history
+          fetch-depth: 0
+          path: frontend  # Important for path consistency
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: nextjs-build
-          path: ./frontend
-
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      # 3. Install dependencies
       - name: Install dependencies
         working-directory: ./frontend
-        run: npm ci
+        run: |
+          npm ci
+          npm install -g vercel@latest
 
-    # 5. Deploy to Vercel (updated)
+      # 4. Deploy using Vercel CLI directly (most reliable)
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-          working-directory: ./frontend
-          vercel-args: '--prod'
+        working-directory: ./frontend
+        run: |
+          echo "Vercel Org ID: $VERCEL_ORG_ID"
+          echo "Vercel Project ID: $VERCEL_PROJECT_ID"
+          vercel deploy --prod --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   # Job 4: Notification (unchanged)
   notify:
