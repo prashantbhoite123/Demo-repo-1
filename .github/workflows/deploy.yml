@@ -97,10 +97,15 @@ jobs:
   deploy-to-vercel:
     needs: build-and-test
     runs-on: ubuntu-latest
-    environment: production 
+    environment: production
     if: github.ref == 'refs/heads/feature/ec2-cicd-setup'
     
     steps:
+      - name: Checkout code (with Git history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # This preserves Git history
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
@@ -118,10 +123,11 @@ jobs:
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           scope: ${{ secrets.VERCEL_ORG_ID }}
           working-directory: ./frontend
           vercel-args: '--prod'
