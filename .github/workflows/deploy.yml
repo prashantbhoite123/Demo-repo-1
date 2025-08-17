@@ -11,7 +11,6 @@ env:
   IMAGE_NAME: ${{ github.repository }}/frontend
 
 jobs:
-  # Job 1: Build and Test
   build-and-test:
     runs-on: ubuntu-latest
     defaults:
@@ -48,11 +47,11 @@ jobs:
             frontend/.next/
             frontend/public/
             frontend/package.json
-            frontend/next.config.js
             frontend/package-lock.json
+            frontend/next.config.js
+            frontend/node_modules/  # Include node_modules for vercel deployment
           retention-days: 1
 
-  # Job 2: Docker Build and Push (unchanged)
   docker-build:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -93,7 +92,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # Job 3: Deploy to Vercel (updated)
   deploy-to-vercel:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -101,39 +99,27 @@ jobs:
     if: github.ref == 'refs/heads/feature/ec2-cicd-setup'
     
     steps:
-      # 1. Proper checkout with full history
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
-          path: frontend  # Important for path consistency
+          name: nextjs-build
+          path: ./frontend
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      # 3. Install dependencies
-      - name: Install dependencies
-        working-directory: ./frontend
+      - name: Verify files exist
         run: |
-          npm ci
-          npm install -g vercel@latest
+          ls -la frontend/
+          ls -la frontend/node_modules/
 
-      # 4. Deploy using Vercel CLI directly (most reliable)
       - name: Deploy to Vercel
         working-directory: ./frontend
         run: |
-          echo "Vercel Org ID: $VERCEL_ORG_ID"
-          echo "Vercel Project ID: $VERCEL_PROJECT_ID"
+          npm install -g vercel@latest
           vercel deploy --prod --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-  # Job 4: Notification (unchanged)
   notify:
     needs: [build-and-test, docker-build, deploy-to-vercel]
     runs-on: ubuntu-latest
