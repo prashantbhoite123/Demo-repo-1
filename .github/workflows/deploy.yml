@@ -46,10 +46,6 @@ jobs:
           path: |
             frontend/.next/
             frontend/public/
-            frontend/package.json
-            frontend/package-lock.json
-            frontend/next.config.js
-            frontend/node_modules/  # Include node_modules for vercel deployment
           retention-days: 1
 
   docker-build:
@@ -99,26 +95,34 @@ jobs:
     if: github.ref == 'refs/heads/feature/ec2-cicd-setup'
     
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: './frontend/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: nextjs-build
           path: ./frontend
 
-      - name: Verify files exist
-        run: |
-          ls -la frontend/
-          ls -la frontend/node_modules/
-
       - name: Deploy to Vercel
-        working-directory: ./frontend
-        run: |
-          npm install -g vercel@latest
-          vercel deploy --prod --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./frontend
+          vercel-args: '--prod'
 
   notify:
     needs: [build-and-test, docker-build, deploy-to-vercel]
