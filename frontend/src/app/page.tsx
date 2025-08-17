@@ -31,7 +31,7 @@ export default function Home() {
               View My Projects
             </button>
             <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-blue-500 hover:text-blue-600 transition-all duration-300">
-              Get In Touch with Prashant
+              Get In Touch with Prashant Bhoite
             </button>
           </div>
 
