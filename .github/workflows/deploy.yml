@@ -100,6 +100,7 @@ jobs:
   deploy-to-vercel:
     needs: build-and-test
     runs-on: ubuntu-latest
+    environment: production 
     if: github.ref == 'refs/heads/feature/ec2-cicd-setup'
     
     steps:
@@ -118,7 +119,7 @@ jobs:
         run: npm ci
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+        uses: amondnet/vercel-action@v1
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
