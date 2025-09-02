@@ -46,8 +46,8 @@ export function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-foreground/80">
-            I'm a passionate developer with over 5 years of experience in building modern web applications.
-            My journey in tech started with a simple "Hello World" and has evolved into creating complex,
+            I&apos;m a passionate developer with over 5 years of experience in building modern web applications.
+            My journey in tech started with a simple &quot;Hello World&quot; and has evolved into creating complex,
             scalable applications that solve real-world problems.
           </p>
         </motion.div>

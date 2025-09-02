@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from './ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export default function Hero() {
   return (
@@ -70,3 +69,4 @@ export default function Hero() {
     </section>
   );
 }
+

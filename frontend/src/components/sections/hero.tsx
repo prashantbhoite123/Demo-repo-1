@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
-import { Github, Linkedin, Mail, Download, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 export function HeroSection() {
@@ -45,7 +45,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              I'm a passionate Full Stack Developer with expertise in modern web technologies. 
+              I&apos;m a passionate Full Stack Developer with expertise in modern web technologies. 
               I create beautiful, responsive, and user-friendly web applications.
             </motion.p>
             

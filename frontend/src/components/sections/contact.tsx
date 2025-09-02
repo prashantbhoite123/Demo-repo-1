@@ -17,7 +17,7 @@ export function ContactSection() {
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-foreground/80">
             Have a project in mind or want to discuss potential opportunities? 
-            Feel free to reach out to me. I'll get back to you as soon as possible.
+            Feel free to reach out to me. I&apos;ll get back to you as soon as possible.
           </p>
         </motion.div>
 
@@ -32,7 +32,7 @@ export function ContactSection() {
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold">Contact Information</h3>
               <p className="text-foreground/80">
-                I'm open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                I&apos;m open to discussing new projects, creative ideas, or opportunities to be part of your vision.
               </p>
             </div>
 
