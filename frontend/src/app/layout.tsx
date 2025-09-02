@@ -1,40 +1,56 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next"
+import { Inter } from "next/font/google"
 import "./globals.css";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import { ThemeProvider } from "@/components/theme-provider"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Prashant - Full Stack Engineer",
-  description: "Full Stack Engineer & Git Enthusiast passionate about creating innovative web solutions",
-};
+  title: "John Doe | Portfolio",
+  description: "Full Stack Developer & Designer",
+  keywords: ["portfolio", "developer", "full stack", "web development", "designer"],
+  authors: [{ name: "John Doe" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://yourdomain.com",
+    title: "John Doe | Portfolio",
+    description: "Full Stack Developer & Designer",
+    siteName: "John Doe Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "John Doe | Portfolio",
+    description: "Full Stack Developer & Designer",
+    creator: "@johndoe",
+  },
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// ✅ Next.js 15 requires `viewport` to be a named export typed as `Viewport`
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header />
-        <main className="pt-16">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-        </main>
-        <Footer />
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

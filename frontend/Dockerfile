@@ -39,7 +39,7 @@
     ENV HOSTNAME=$HOSTNAME
     
     # Expose the app port
-    EXPOSE 3000 8000 5000
+    EXPOSE 3000
     
     # Start the standalone server
     CMD ["node", "server.js"]
