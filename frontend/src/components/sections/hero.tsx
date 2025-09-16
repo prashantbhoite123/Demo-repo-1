@@ -27,7 +27,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Prashant Bhoite
+             Vaishnavi Mane
             </motion.h1>
             
             <motion.h2 
@@ -36,7 +36,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              MERN Stack Developer | Docker & AWS Certified
+              Java Full Stack Developer | PHP Certified
             </motion.h2>
             
             <motion.p 
@@ -91,8 +91,8 @@ export function HeroSection() {
               <div className="absolute inset-4 bg-foreground/5 rounded-full" />
               <div className="absolute inset-8 rounded-full overflow-hidden flex items-center justify-center">
                 <Image
-                  src="/3d-boy-laptop.png"
-                  alt="3D Boy with Laptop"
+                  src="/3dgirlpng2-removebg-preview.png"
+                  alt="3D Girl with Laptop"
                   fill
                   className="object-contain"
                   priority

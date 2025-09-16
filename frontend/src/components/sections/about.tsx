@@ -3,7 +3,7 @@ import { Briefcase, GraduationCap, Code, Server, Database, Smartphone } from 'lu
 
 const skills = [
   { name: 'Frontend', icon: Code, items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux'] },
-  { name: 'Backend', icon: Server, items: ['Node.js', 'Express', 'NestJS', 'Django', 'Flask'] },
+  { name: 'Java', icon: Server, items: ['Java', 'Spring Boot', 'Hibernate', 'REST APIs', 'Maven/Gradle'] },
   { name: 'Database', icon: Database, items: ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase', 'Redis'] },
   { name: 'Mobile', icon: Smartphone, items: ['React Native', 'Flutter', 'Swift', 'Kotlin'] },
 ];

@@ -46,7 +46,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Frontend Development</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Backend Development</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Java Development</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Full Stack Solutions</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Git Consulting</a></li>
             </ul>
@@ -56,7 +56,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 Prashant. All rights reserved.
+            2024 Prashant. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
