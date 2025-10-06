@@ -2,32 +2,26 @@ import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Code, Server, Database, Smartphone } from 'lucide-react';
 
 const skills = [
-  { name: 'Frontend', icon: Code, items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux'] },
-  { name: 'Java', icon: Server, items: ['Java', 'Spring Boot', 'Hibernate', 'REST APIs', 'Maven/Gradle'] },
-  { name: 'Database', icon: Database, items: ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase', 'Redis'] },
-  { name: 'Mobile', icon: Smartphone, items: ['React Native', 'Flutter', 'Swift', 'Kotlin'] },
+  { name: 'Core', icon: Code, items: ['HTML', 'CSS', 'JavaScript'] },
+  { name: 'Frontend', icon: Code, items: ['React', 'Bootstrap'] },
+  { name: 'Backend', icon: Server, items: ['PHP', 'Java'] },
+  { name: 'Frameworks', icon: Server, items: ['CodeIgniter'] },
+  { name: 'Database', icon: Database, items: ['MySQL', 'PL/SQL'] },
 ];
 
 const experiences = [
   {
-    role: 'Senior Frontend Developer',
-    company: 'TechCorp Inc.',
-    duration: '2021 - Present',
-    description: 'Leading frontend development for enterprise applications using React and Next.js.',
+    role: 'Java & PHP Developer',
+    company: '—',
+    duration: '—',
+    description: 'Building applications with Java and PHP (CodeIgniter), crafting clean UI and performant backend APIs.',
     icon: Briefcase,
   },
   {
-    role: 'Full Stack Developer',
-    company: 'WebSolutions Ltd.',
-    duration: '2019 - 2021',
-    description: 'Developed and maintained full-stack applications using MERN stack.',
-    icon: Briefcase,
-  },
-  {
-    role: 'Computer Science',
-    company: 'Tech University',
-    duration: '2015 - 2019',
-    description: 'Bachelor of Science in Computer Science with honors.',
+    role: 'Education',
+    company: '—',
+    duration: '—',
+    description: 'Core Java, PHP, web fundamentals, and relational databases (MySQL/PL/SQL).',
     icon: GraduationCap,
   },
 ];
@@ -52,12 +46,13 @@ export function AboutSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="lg:col-span-2"
           >
             <h3 className="text-2xl font-semibold mb-6">My Skills</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -124,6 +119,8 @@ export function AboutSection() {
               ))}
             </div>
           </motion.div>
+
+          
         </div>
 
         <motion.div

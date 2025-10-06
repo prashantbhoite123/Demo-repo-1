@@ -2,15 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
+import { AnimatedButton } from '../ui/animated-button';
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { AceternityBg } from '@/components/hero-bg/aceternity-bg';
 
 export function HeroSection() {
   return (
     <section id="home" className="relative w-full py-20 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 from-0% to-transparent to-70%" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1020] via-[#0b1020] to-[#0b1020]/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(59,130,246,0.15),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(167,139,250,0.12),transparent_60%)]" />
+        <AceternityBg />
       </div>
 
       <div className="container mx-auto px-4 md:px-6">
@@ -55,11 +59,13 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
             >
-              <Button className="group">
+              <AnimatedButton gradient="bluePurple" className="group" onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}>
                 View Projects
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button variant="outline">Contact Me</Button>
+              </AnimatedButton>
+              <AnimatedButton gradient="neon" variant="outline" onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                Contact Me
+              </AnimatedButton>
             </motion.div>
 
             <motion.div 
@@ -89,15 +95,16 @@ export function HeroSection() {
             <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-primary/20">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full" />
               <div className="absolute inset-4 bg-foreground/5 rounded-full" />
-              <div className="absolute inset-8 rounded-full overflow-hidden flex items-center justify-center">
-                <Image
-                  src="/3dgirlpng2-removebg-preview.png"
-                  alt="3D Girl with Laptop"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
+             <div className="absolute inset-8 rounded-full overflow-hidden flex items-center justify-center bg-transparent border-4 border-gradient-to-r from-purple-500 via-pink-500 to-blue-500 shadow-xl shadow-purple-500/40">
+  <Image 
+    src="/capport.png"
+    alt="3D Girl with Laptop"
+    fill
+    className="object-contain transition-transform duration-500 hover:scale-105"
+    priority
+  />
+</div>
+
               
               {/* Animated elements */}
               <motion.div 
@@ -145,7 +152,11 @@ export function HeroSection() {
         </div>
       </div>
 
-      <motion.div 
+      <motion.button 
+        onClick={() => {
+          const next = document.querySelector('#about');
+          if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -177,7 +188,8 @@ export function HeroSection() {
             />
           </div>
         </motion.div>
-      </motion.div>
+      </motion.button>
     </section>
   );
 }
+

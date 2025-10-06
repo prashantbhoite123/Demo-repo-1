@@ -1,41 +1,10 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
-
-const projects = [
-  {
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce solution with payment integration, user authentication, and admin dashboard.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    image: '/project1.jpg',
-    demo: '#',
-    code: '#',
-  },
-  {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates and team collaboration features.',
-    tags: ['Next.js', 'TypeScript', 'Firebase', 'Tailwind CSS'],
-    image: '/project2.jpg',
-    demo: '#',
-    code: '#',
-  },
-  {
-    title: 'AI-Powered Chatbot',
-    description: 'An intelligent chatbot using natural language processing to provide customer support.',
-    tags: ['Python', 'TensorFlow', 'React', 'FastAPI'],
-    image: '/project3.jpg',
-    demo: '#',
-    code: '#',
-  },
-  {
-    title: 'Fitness Tracker',
-    description: 'Mobile application for tracking workouts, nutrition, and fitness goals with progress analytics.',
-    tags: ['React Native', 'Redux', 'Firebase', 'Expo'],
-    image: '/project4.jpg',
-    demo: '#',
-    code: '#',
-  },
-];
+import { AnimatedButton } from '../ui/animated-button';
+import Link from 'next/link';
+import { toSlug } from '@/lib/slug';
+import { Projects as DataProjects } from '@/data';
 
 export function ProjectsSection() {
   return (
@@ -57,7 +26,7 @@ export function ProjectsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {DataProjects.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -68,16 +37,16 @@ export function ProjectsSection() {
             >
               <div className="h-48 bg-gradient-to-r from-primary/10 to-primary/5 flex items-center justify-center">
                 <div className="text-4xl font-bold text-foreground/10">
-                  {project.title.split(' ').map(word => word[0]).join('')}
+                  {project.name.split(' ').map(word => word[0]).join('')}
                 </div>
               </div>
               
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
+                  <h3 className="text-xl font-semibold">{project.name}</h3>
                   <div className="flex space-x-2">
                     <a 
-                      href={project.demo} 
+                      href={project.url || '#'} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-foreground/60 hover:text-primary transition-colors"
@@ -85,46 +54,47 @@ export function ProjectsSection() {
                     >
                       <ExternalLink className="h-5 w-5" />
                     </a>
-                    <a 
-                      href={project.code} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-foreground/60 hover:text-primary transition-colors"
-                      aria-label="View code"
-                    >
-                      <Github className="h-5 w-5" />
-                    </a>
                   </div>
                 </div>
                 
-                <p className="text-foreground/70 mb-4">{project.description}</p>
+                <p className="text-foreground/70 mb-4">{project.desc}</p>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, i) => (
-                    <span 
-                      key={i}
-                      className="text-xs px-2 py-1 bg-foreground/5 rounded-full text-foreground/70"
+                {project.features?.length ? (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.features.slice(0, 4).map((feat, i) => (
+                      <span 
+                        key={i}
+                        className="text-xs px-2 py-1 bg-foreground/5 rounded-full text-foreground/70"
+                      >
+                        {feat}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                
+                <div className="transition-opacity duration-300 group-hover:opacity-0">
+                  <Link href={`/projects/${toSlug(project.name)}`}>
+                    <AnimatedButton 
+                      gradient="rainbow"
+                      size="sm" 
+                      className="group-hover:translate-x-1 transition-transform duration-300 relative z-10"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      View Project
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </AnimatedButton>
+                  </Link>
                 </div>
-                
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="group-hover:translate-x-1 transition-transform duration-300"
-                >
-                  View Project
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
               </div>
               
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-foreground/80 mb-4 line-clamp-2">{project.description}</p>
-                  <Button size="sm">View Details</Button>
+                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+                  <p className="text-foreground/80 mb-4 line-clamp-2">{project.desc}</p>
+                  <div className="pointer-events-auto">
+                    <Link href={`/projects/${toSlug(project.name)}`}>
+                      <Button size="sm">View Details</Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -138,10 +108,10 @@ export function ProjectsSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center mt-16"
         >
-          <Button variant="outline" className="group">
+          <AnimatedButton gradient="bluePurple" className="group">
             View All Projects
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          </AnimatedButton>
         </motion.div>
       </div>
     </section>

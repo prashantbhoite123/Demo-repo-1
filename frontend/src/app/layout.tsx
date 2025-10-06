@@ -6,23 +6,23 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "John Doe | Portfolio",
-  description: "Full Stack Developer & Designer",
-  keywords: ["portfolio", "developer", "full stack", "web development", "designer"],
-  authors: [{ name: "John Doe" }],
+  title: "Vaishnavi Mane | Portfolio",
+  description: "Java & PHP Full Stack Developer",
+  keywords: ["portfolio", "developer", "full stack", "java", "php", "next.js", "framer motion"],
+  authors: [{ name: "Vaishnavi Mane" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://yourdomain.com",
-    title: "John Doe | Portfolio",
-    description: "Full Stack Developer & Designer",
-    siteName: "John Doe Portfolio",
+    title: "Vaishnavi Mane | Portfolio",
+    description: "Java & PHP Full Stack Developer",
+    siteName: "Vaishnavi Mane Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "John Doe | Portfolio",
-    description: "Full Stack Developer & Designer",
-    creator: "@johndoe",
+    title: "Vaishnavi Mane | Portfolio",
+    description: "Java & PHP Full Stack Developer",
+    creator: "@vaishnavi",
   },
 }
 
