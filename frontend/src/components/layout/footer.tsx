@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import Link from 'next/link'
+import { Github, Linkedin, Twitter, Mail } from 'lucide-react'
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-  
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className="bg-background border-t border-foreground/10">
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">John Doe</h3>
+            <h3 className="text-xl font-bold mb-4 text-primary">Vaishnavi Mane</h3>
             <p className="text-foreground/70 mb-4">
               Full Stack Developer passionate about creating beautiful, functional, and user-centered digital experiences.
             </p>
@@ -18,7 +18,7 @@ export function Footer() {
                 { icon: Github, label: 'GitHub', url: '#' },
                 { icon: Linkedin, label: 'LinkedIn', url: '#' },
                 { icon: Twitter, label: 'Twitter', url: '#' },
-                { icon: Mail, label: 'Email', url: 'mailto:hello@example.com' },
+                { icon: Mail, label: 'Email', url: 'vaishnavimane991@gmail.com' },
               ].map((social, i) => (
                 <a
                   key={i}
@@ -44,7 +44,7 @@ export function Footer() {
                 { name: 'Contact', href: '#contact' },
               ].map((item, i) => (
                 <li key={i}>
-                  <Link 
+                  <Link
                     href={item.href}
                     className="text-foreground/70 hover:text-primary transition-colors"
                   >
@@ -58,7 +58,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-foreground/70">
-              <li>hello@example.com</li>
+              <li>vaishnavimane991@gmail.com</li>
               <li>+1 (234) 567-890</li>
               <li>San Francisco, CA</li>
             </ul>
@@ -67,7 +67,7 @@ export function Footer() {
 
         <div className="border-t border-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-foreground/60">
-            © {currentYear} John Doe. All rights reserved.
+            © {currentYear} <span className='font-bold text-primary'>Vaishnavi Mane.</span> All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-foreground/60 hover:text-primary transition-colors">
@@ -80,5 +80,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

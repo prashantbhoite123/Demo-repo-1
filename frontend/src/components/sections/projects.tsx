@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
-import { Button } from '../ui/button';
-import { AnimatedButton } from '../ui/animated-button';
-import Link from 'next/link';
-import { toSlug } from '@/lib/slug';
-import { Projects as DataProjects } from '@/data';
+import { motion } from 'framer-motion'
+import { ExternalLink, Github, ArrowRight } from 'lucide-react'
+import { Button } from '../ui/button'
+import { AnimatedButton } from '../ui/animated-button'
+import Link from 'next/link'
+import { toSlug } from '@/lib/slug'
+import { Projects as DataProjects } from '@/data'
 
 export function ProjectsSection() {
   return (
@@ -40,14 +40,14 @@ export function ProjectsSection() {
                   {project.name.split(' ').map(word => word[0]).join('')}
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold">{project.name}</h3>
                   <div className="flex space-x-2">
-                    <a 
-                      href={project.url || '#'} 
-                      target="_blank" 
+                    <a
+                      href={project.url || '#'}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-foreground/60 hover:text-primary transition-colors"
                       aria-label="View demo"
@@ -56,13 +56,13 @@ export function ProjectsSection() {
                     </a>
                   </div>
                 </div>
-                
+
                 <p className="text-foreground/70 mb-4">{project.desc}</p>
-                
+
                 {project.features?.length ? (
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.features.slice(0, 4).map((feat, i) => (
-                      <span 
+                      <span
                         key={i}
                         className="text-xs px-2 py-1 bg-foreground/5 rounded-full text-foreground/70"
                       >
@@ -71,12 +71,12 @@ export function ProjectsSection() {
                     ))}
                   </div>
                 ) : null}
-                
-                <div className="transition-opacity duration-300 group-hover:opacity-0">
+
+                <div className="transition-opacity duration-300">
                   <Link href={`/projects/${toSlug(project.name)}`}>
-                    <AnimatedButton 
+                    <AnimatedButton
                       gradient="rainbow"
-                      size="sm" 
+                      size="sm"
                       className="group-hover:translate-x-1 transition-transform duration-300 relative z-10"
                     >
                       View Project
@@ -85,22 +85,10 @@ export function ProjectsSection() {
                   </Link>
                 </div>
               </div>
-              
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                  <p className="text-foreground/80 mb-4 line-clamp-2">{project.desc}</p>
-                  <div className="pointer-events-auto">
-                    <Link href={`/projects/${toSlug(project.name)}`}>
-                      <Button size="sm">View Details</Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           ))}
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,5 +103,6 @@ export function ProjectsSection() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }
+
