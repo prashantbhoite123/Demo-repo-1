@@ -41,7 +41,7 @@ export function Header() {
           >
             <Link href="#" className="text-2xl font-bold">
               <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                Portfolio
+                Vaishnavi Mane
               </span>
             </Link>
           </motion.div>
