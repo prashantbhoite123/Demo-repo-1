@@ -5,6 +5,8 @@ import { AnimatedButton } from '../ui/animated-button'
 import Link from 'next/link'
 import { toSlug } from '@/lib/slug'
 import { Projects as DataProjects } from '@/data'
+import { BorderBeam } from '../ui/border-beam'
+import { BorderRotate } from '../ui/BorderRotate'
 
 export function ProjectsSection() {
   return (
@@ -25,7 +27,7 @@ export function ProjectsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
           {DataProjects.map((project, index) => (
             <motion.div
               key={index}
@@ -33,8 +35,9 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="group relative overflow-hidden rounded-xl border border-blue-600 shadow-lg hover:shadow-xl transition-shadow duration-300 "
             >
+               
               <div className="h-48 bg-gradient-to-r from-primary/10 to-primary/5 flex items-center justify-center">
                 <div className="text-4xl font-bold text-foreground/10">
                   {project.name.split(' ').map(word => word[0]).join('')}
@@ -85,6 +88,7 @@ export function ProjectsSection() {
                   </Link>
                 </div>
               </div>
+              <BorderBeam/>
             </motion.div>
           ))}
         </div>

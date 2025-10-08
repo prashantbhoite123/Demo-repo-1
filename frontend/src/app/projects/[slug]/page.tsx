@@ -40,7 +40,7 @@ export default function ProjectDetailPage() {
           className="grid grid-cols-1 lg:grid-cols-3 gap-10"
         >
           <div className="lg:col-span-2 space-y-6">
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent text-3xl md:text-4xl font-bold">
               {project.name}
             </h1>
             <p className="text-foreground/80">
@@ -70,7 +70,7 @@ export default function ProjectDetailPage() {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="rounded-xl border border-foreground/10 p-6 bg-card shadow-sm">
+            <div className="rounded-xl  p-6 bg-card shadow-sm border border-blue-600">
               <h3 className="font-semibold mb-4">Technologies Used</h3>
               <div className="flex flex-wrap gap-2">
                 {/* Basic tech inference from features/desc; customize as needed */}

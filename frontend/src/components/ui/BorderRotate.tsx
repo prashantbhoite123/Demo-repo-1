@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { BorderBeam } from "./border-beam"
 
-export function Component() {
+export function BorderRotate() {
     return (
         <Card className="relative w-[350px] overflow-hidden">
             <CardHeader>

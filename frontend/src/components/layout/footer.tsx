@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <h3 className="text-xl font-bold mb-4 text-primary">Vaishnavi Mane</h3>
+            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Vaishnavi Mane</h3>
             <p className="text-foreground/70 mb-4">
               Full Stack Developer passionate about creating beautiful, functional, and user-centered digital experiences.
             </p>
@@ -67,7 +67,7 @@ export function Footer() {
 
         <div className="border-t border-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-foreground/60">
-            © {currentYear} <span className='font-bold text-primary'>Vaishnavi Mane.</span> All rights reserved.
+            © {currentYear} <span className='font-bold text-blue-600'>Vaishnavi Mane.</span> All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-foreground/60 hover:text-primary transition-colors">
