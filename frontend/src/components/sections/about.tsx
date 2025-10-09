@@ -64,10 +64,10 @@ export function AboutSection() {
                   <BorderBeam
                     colorFrom="#00d4ff"
                     colorTo="#0099ff"
-                    size={250}
+                    size={400}
                     duration={8}
                     delay={index * 0.5}
-                    borderWidth={2}
+                    borderWidth={10}
                   />
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
