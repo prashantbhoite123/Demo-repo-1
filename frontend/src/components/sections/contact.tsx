@@ -1,12 +1,11 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { Button } from '../ui/button';
-import { AnimatedButton } from '../ui/animated-button';
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { Mail, MapPin, Phone, Send } from 'lucide-react'
+import { AnimatedButton } from '../ui/animated-button'
 
 export function ContactSection() {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [message, setMessage] = useState<string>('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState<string>('')
   return (
     <section id="contact" className="py-20 bg-muted/40">
       <div className="container mx-auto px-4 md:px-6">
@@ -20,7 +19,7 @@ export function ContactSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-foreground/80">
-            Have a project in mind or want to discuss potential opportunities? 
+            Have a project in mind or want to discuss potential opportunities?
             Feel free to reach out to me. I&apos;ll get back to you as soon as possible.
           </p>
         </motion.div>
@@ -111,38 +110,39 @@ export function ContactSection() {
           >
             <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
             <form className="space-y-6" onSubmit={async (e) => {
-              e.preventDefault();
-              const form = e.currentTarget as HTMLFormElement;
-              const formData = new FormData(form);
+              e.preventDefault()
+              const form = e.currentTarget as HTMLFormElement
+              const formData = new FormData(form)
               const payload = {
                 name: String(formData.get('name') || ''),
                 email: String(formData.get('email') || ''),
                 subject: String(formData.get('subject') || ''),
                 message: String(formData.get('message') || ''),
-              };
+              }
               try {
-                setStatus('sending');
-                setMessage('');
+                setStatus('sending')
+                setMessage('')
                 const res = await fetch('/api/contact', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(payload),
-                });
-                const data = await res.json();
+                })
+                const data = await res.json()
                 if (data?.ok) {
-                  setStatus('success');
-                  setMessage('Message sent successfully. Thank you!');
-                  form.reset();
+                  setStatus('success')
+                  setMessage('Message sent successfully. Thank you!')
+                  form.reset()
                 } else {
-                  setStatus('error');
-                  setMessage(`Failed to send message: ${data?.error || 'Unknown error'}`);
+                  setStatus('error')
+                  setMessage(`Failed to send message: ${data?.error || 'Unknown error'}`)
                 }
-              } catch (err: any) {
-                setStatus('error');
-                setMessage('Something went wrong. Please try again later.');
+              } catch (error) {
+                setStatus('error')
+                setMessage('Something went wrong. Please try again later.')
+                console.log(error)
               }
               finally {
-                setTimeout(() => setStatus('idle'), 2000);
+                setTimeout(() => setStatus('idle'), 2000)
               }
             }}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -196,12 +196,12 @@ export function ContactSection() {
                 ></textarea>
               </div>
               <div className="pt-2 space-y-3">
-                <AnimatedButton gradient="neon" className="group w-full sm:w-auto" disabled={status==='sending'}>
-                  {status==='sending' ? 'Sending...' : 'Send Message'}
+                <AnimatedButton gradient="neon" className="group w-full sm:w-auto" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Sending...' : 'Send Message'}
                   <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </AnimatedButton>
                 {message ? (
-                  <p className={"text-sm " + (status==='success' ? 'text-green-600' : 'text-red-600')}>{message}</p>
+                  <p className={"text-sm " + (status === 'success' ? 'text-green-600' : 'text-red-600')}>{message}</p>
                 ) : null}
               </div>
             </form>
@@ -209,5 +209,5 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

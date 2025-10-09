@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion'
-import { Briefcase, GraduationCap, Code, Server, Database, Smartphone } from 'lucide-react'
+import { Briefcase, GraduationCap, Code, Server, Database } from 'lucide-react'
 import { BorderBeam } from '../ui/border-beam'
 
 const skills = [

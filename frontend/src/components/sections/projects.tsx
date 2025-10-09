@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, ArrowRight } from 'lucide-react'
-import { Button } from '../ui/button'
+import { ExternalLink, ArrowRight } from 'lucide-react' 
 import { AnimatedButton } from '../ui/animated-button'
 import Link from 'next/link'
 import { toSlug } from '@/lib/slug'
 import { Projects as DataProjects } from '@/data'
 import { BorderBeam } from '../ui/border-beam'
-import { BorderRotate } from '../ui/BorderRotate'
 
 export function ProjectsSection() {
   return (
