@@ -43,7 +43,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Vaishnavi Mane
+              Vaishnavi
             </motion.h1>
 
             <motion.h2
@@ -61,7 +61,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              I&apos;m a passionate Full Stack Developer with expertise in modern web technologies. 
+              I&apos;m a passionate Full Stack Developer with expertise in modern web technologies.
               I create beautiful, responsive, and user-friendly web applications.
             </motion.p>
 
