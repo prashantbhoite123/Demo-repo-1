@@ -35,4 +35,39 @@ export const Projects = [
       "SEO-friendly URLs with CodeIgniter routing"
     ]
   }
-];
+]
+
+
+
+
+export const Menus = [
+  {
+    id: `home-${Date.now()}`,
+    // Icon: FaHouse,
+    Icon: "Home",
+    uri: "#home",
+    name: "Home",
+  },
+  {
+    id: `projects-${Date.now()}`,
+    // Icon: FaDiagramProject,
+    Icon: "Projects",
+    uri: "#projects",
+    name: "Projects",
+  },
+  {
+    id: `about-${Date.now()}`,
+    // Icon: FaUser,
+    Icon: "About",
+    uri: "#about",
+    name: "About",
+  },
+
+  {
+    id: `repo-${Date.now()}`,
+    // Icon: FaGithub,
+    Icon: "Contact",
+    uri: "#contact",
+    name: "Repositoriries",
+  },
+]

@@ -1,112 +1,89 @@
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
-import { Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+"use client"
+import React, { Dispatch, SetStateAction, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { Menus } from "@/data"
 
-const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
-];
+export const Header = () => {
+  return (
+    <div className="bg-white/10 backdrop-blur-md border-white/20 border-2 fixed top-0 left-1/2 transform -translate-x-1/2 w-auto flex items-center justify-center z-50 mt-2 rounded-full">
+      <SlideTabs />
+    </div>
+  )
+}
 
-export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+const SlideTabs = () => {
+  const [position, setPosition] = useState<Position>({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  })
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 z-50 w-full transition-all duration-300',
-        scrolled ? 'bg-background/80 backdrop-blur-md py-2 shadow-sm' : 'py-4'
-      )}
+    <ul
+      onMouseLeave={() => {
+        setPosition((pv) => ({
+          ...pv,
+          opacity: 0,
+        }))
+      }}
+      className="relative mx-auto flex w-fit rounded-full  p-1"
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center"
-          >
-            <Link href="#" className="text-2xl font-bold">
-              <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                Vaishnavi Mane
-              </span>
-            </Link>
-          </motion.div>
+      {Menus.map((menu, i) => (
+        <Tab key={i} setPosition={setPosition} url={menu.uri}>
+          {menu.Icon}
+        </Tab>
+      ))}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <Link
-                  href={item.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                >
-                  {item.name}
-                </Link>
-              </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navItems.length * 0.1, duration: 0.5 }}
-            >
-              <Button variant="outline" className="ml-4">
-                Download CV
-              </Button>
-            </motion.div>
-          </nav>
+      <Cursor position={position} />
+    </ul>
+  )
+}
 
-          {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
-        </div>
+const Tab = ({
+  children,
+  setPosition,
+  url,
+}: {
+  children: string
+  setPosition: Dispatch<SetStateAction<Position>>
+  url: string
+}) => {
+  const ref = useRef<null | HTMLLIElement>(null)
 
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 space-y-4 overflow-hidden"
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block py-2 text-foreground/80 hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <Button className="w-full mt-4">Download CV</Button>
-          </motion.div>
-        )}
-      </div>
-    </header>
-  );
+  return (
+    <li
+      ref={ref}
+      onMouseEnter={() => {
+        if (!ref?.current) return
+
+        const { width } = ref.current.getBoundingClientRect()
+
+        setPosition({
+          left: ref.current.offsetLeft,
+          width,
+          opacity: 1,
+        })
+      }}
+      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs  text-white  md:px-5 md:py-2 md:text-sm"
+    >
+      <a href={url}>{children}</a>
+    </li>
+  )
+}
+
+const Cursor = ({ position }: { position: Position }) => {
+  return (
+    <motion.li
+      animate={{
+        ...position,
+      }}
+      className="absolute z-0 h-5 rounded-full bg-gradient-to-r text-lg text-black font-bold from-[#d8e0e2] to-[#12a2e0] md:h-9"
+    />
+  )
+}
+
+type Position = {
+  left: number
+  width: number 
+  opacity: number
 }

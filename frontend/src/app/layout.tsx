@@ -44,9 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
-          disableTransitionOnChange
+          disableTransitionOnChange 
         >
           {children}
         </ThemeProvider>
