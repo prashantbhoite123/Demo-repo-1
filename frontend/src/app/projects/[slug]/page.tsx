@@ -1,92 +1,164 @@
-'use client';
+'use client'
 
-import { useMemo } from 'react';
-import { useParams, notFound } from 'next/navigation';
-import { Projects } from '@/data';
-import { toSlug } from '@/lib/slug';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
-import { AnimatedButton } from '@/components/ui/animated-button';
+import { useMemo } from 'react'
+import { useParams, notFound } from 'next/navigation'
+import { Projects } from '@/data'
+import { toSlug } from '@/lib/slug'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowLeft, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
+import { AnimatedButton } from '@/components/ui/animated-button'
 
 export default function ProjectDetailPage() {
-  const params = useParams();
-  const slug = String(params?.slug || '');
+  const params = useParams()
+  const slug = String(params?.slug || '')
 
   const project = useMemo(() => {
-    return Projects.find((p) => toSlug(p.name) === slug);
-  }, [slug]);
+    return Projects.find((p) => toSlug(p.name) === slug)
+  }, [slug])
 
-  if (!project) return notFound();
+  if (!project) return notFound()
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 md:px-6 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8"
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="container mx-auto px-4 md:px-6 py-24"
+      >
+        <Link
+          href="#"
+          onClick={() => history.back()}
+          className="inline-flex items-center text-white/70 hover:text-blue-400 transition-colors"
         >
-          <Link href="#" onClick={() => history.back()} className="inline-flex items-center text-foreground/70 hover:text-primary">
-            <ArrowLeft className="h-4 w-4 mr-2" /> Back
-          </Link>
+          <ArrowLeft className="h-4 w-4 mr-2" /> Back
+        </Link>
+
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-4xl md:text-6xl font-extrabold mt-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+        >
+          {project.name}
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="max-w-3xl mt-6 text-lg text-white/70 leading-relaxed"
+        >
+          {project.desc}
+        </motion.p>
+      </motion.div>
+
+      {/* Image Section */}
+      {project.image && (
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative w-full max-w-5xl mx-auto px-4 md:px-0 mb-16"
+        >
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+            className="overflow-hidden rounded-2xl shadow-lg border border-white/10"
+          >
+            <Image
+              src={project.image}
+              alt={project.name}
+              width={1200}
+              height={700}
+              className="object-cover w-full h-[400px] md:h-[500px]"
+            />
+          </motion.div>
         </motion.div>
+      )}
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-10"
-        >
-          <div className="lg:col-span-2 space-y-6">
-            <h1 className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent text-3xl md:text-4xl font-bold">
-              {project.name}
-            </h1>
-            <p className="text-foreground/80">
-              {project.desc}
-            </p>
-
-            {project.features?.length ? (
-              <div>
-                <h2 className="text-xl font-semibold mb-3">Key Features</h2>
-                <ul className="space-y-2 list-disc pl-5 text-foreground/80">
-                  {project.features.map((f, i) => (
-                    <li key={i}>{f}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
-            <div className="flex flex-wrap gap-3 pt-2">
-              {project.url ? (
-                <AnimatedButton asChild gradient="bluePurple">
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
-                    Live Site <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </AnimatedButton>
-              ) : null}
-            </div>
-          </div>
-
-          <div className="lg:col-span-1">
-            <div className="rounded-xl  p-6 bg-card shadow-sm border border-blue-600">
-              <h3 className="font-semibold mb-4">Technologies Used</h3>
-              <div className="flex flex-wrap gap-2">
-                {/* Basic tech inference from features/desc; customize as needed */}
-                {['HTML','CSS','JavaScript','PHP','Java','MySQL'].map((t) => (
-                  <span key={t} className="text-xs px-2 py-1 bg-foreground/5 rounded-full text-foreground/70">{t}</span>
+      {/* Details Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="container mx-auto px-4 md:px-6 pb-24 grid grid-cols-1 lg:grid-cols-3 gap-12"
+      >
+        {/* Left content */}
+        <div className="lg:col-span-2 space-y-8">
+          {project.features?.length ? (
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl font-semibold mb-4 text-blue-400">
+                ✨ Key Features
+              </h2>
+              <ul className="space-y-3 list-disc pl-5 text-white/80">
+                {project.features.map((f, i) => (
+                  <li
+                    key={i}
+                    className="hover:text-blue-400 transition-colors duration-200"
+                  >
+                    {f}
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </motion.div>
+          ) : null}
+
+          {/* Live link button */}
+          {project.url && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <AnimatedButton asChild gradient="bluePurple">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  Visit Live Site <ExternalLink className="h-4 w-4" />
+                </a>
+              </AnimatedButton>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Right sidebar */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl border border-white/20 shadow-md"
+        >
+          <h3 className="text-xl font-semibold mb-4 text-blue-300">
+            🧠 Technologies Used
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {(['React', 'Node.js', 'MongoDB']).map((t) => (
+              <motion.span
+                key={t}
+                whileHover={{ scale: 1.1 }}
+                className="text-xs px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30"
+              >
+                {t}
+              </motion.span>
+            ))}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
-  );
+  )
 }
-
-
-
-
-

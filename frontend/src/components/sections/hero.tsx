@@ -38,7 +38,10 @@ export function HeroSection() {
             className="space-y-6 text-center lg:text-left"
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent"
+
+              className="text-5xl md:text-6xl font-black 
+                bg-gradient-to-r from-white via-sky-400 to-blue-600 
+                bg-clip-text text-transparent mb-6 drop-shadow-[0_0_20px_#00bfff]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -56,7 +59,7 @@ export function HeroSection() {
             </motion.h2>
 
             <motion.p
-              className="text-foreground/70 max-w-lg mx-auto lg:mx-0"
+              className="text-muted-foreground max-w-lg mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}

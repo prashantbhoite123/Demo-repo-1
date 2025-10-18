@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { SparklesCore } from "./ui/sparkles";
+"use client"
+import React from "react"
+import { SparklesCore } from "./ui/sparkles"
 
 
 
@@ -15,12 +15,12 @@ export function SparklesPreview() {
           maxSize={1.4}
           particleDensity={100}
           className="w-full h-full"
-          particleColor="#FFFFFF"
+          particleColor="#7df9ff"
         />
       </div>
       <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
-      
+
       </h1>
     </div>
-  );
+  )
 }

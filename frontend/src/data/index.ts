@@ -1,7 +1,93 @@
+
+
+
+
+
+
+export const SkillData = [
+  {
+    name: "Html 5",
+    Image: "/html.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Css",
+    Image: "/css.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "JavaScript",
+    Image: "/js.png",
+    width: 52,
+    height: 52,
+  },
+  {
+    name: "Tailwind Css",
+    Image: "/tailwind.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "React",
+    Image: "/react.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Redux",
+    Image: "/redux.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "TypeScript",
+    Image: "/ts.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Next js 13",
+    Image: "/next.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Framer Motion",
+    Image: "/framer.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Stripe Payment",
+    Image: "/stripe.webp",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Node js",
+    Image: "/node-js.png",
+    width: 64,
+    height: 64,
+  },
+  {
+    name: "Mongo db",
+    Image: "/mongodb.png",
+    width: 32,
+    height: 32,
+  },
+]
+
+
+
+
+
+
 export const Projects = [
   {
     name: "Biz Visiting Cards",
-    image: "/cards.png",
+    image: "/projectone.png",
     date: "2025",
     url: "http://bizvisitingcard.com/",
     desc: "A PHP full-stack visiting card management platform that allows businesses and professionals to create, customize, and share their digital business cards online. It includes an admin panel for managing users and card templates, while users can design, save, and share their own cards.",
@@ -18,7 +104,7 @@ export const Projects = [
   },
   {
     name: "Ecommerce Web",
-    image: "/ecommerce.png",
+    image: "/projecttwo.png",
     date: "2025",
     url: "https://vktradingsolution.in/ecommerce",
     desc: "A full-stack e-commerce web application built with PHP CodeIgniter framework, providing a seamless shopping experience with secure authentication, product management, and order handling.",

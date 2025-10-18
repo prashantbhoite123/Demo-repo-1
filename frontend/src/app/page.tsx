@@ -1,20 +1,22 @@
-'use client';
+'use client'
 
-import { Header } from '@/components/layout/header';
-import { HeroSection } from '@/components/sections/hero';
-import { AboutSection } from '@/components/sections/about';
-import { ProjectsSection } from '@/components/sections/projects';
-import { ContactSection } from '@/components/sections/contact';
-import { Footer } from '@/components/layout/footer';
+import { Header } from '@/components/layout/header'
+import { HeroSection } from '@/components/sections/hero'
+import { AboutSection } from '@/components/sections/about'
+import { ProjectsSection } from '@/components/sections/projects'
+import { ContactSection } from '@/components/sections/contact'
+import { Footer } from '@/components/layout/footer'
+import TechnicalTools from '@/components/sections/TechnicalTools'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
-        <HeroSection/>
+        <HeroSection />
         <AboutSection />
+        <TechnicalTools />
         <ProjectsSection />
         <ContactSection />
       </main>
@@ -42,5 +44,5 @@ export default function Home() {
         </svg>
       </button>
     </div>
-  );
+  )
 }
