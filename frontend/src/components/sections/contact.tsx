@@ -10,11 +10,11 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative py-24 bg-gradient-to-b from-gray-950 via-gray-900 to-black overflow-hidden">
-      {/* Electric glow background */}
+      
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,191,255,0.15)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Title Section */}
+        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export function ContactSection() {
               </p>
             </div>
 
-            {/* Contact Items */}
+            
             <div className="space-y-6 text-gray-300">
               {[
                 { Icon: Mail, title: 'Email Me', info: 'vaishnavimane991@gmail.com', link: 'mailto:vaishnavimane991@gmail.com' },
@@ -76,7 +76,7 @@ export function ContactSection() {
               ))}
             </div>
 
-            {/* Social Icons */}
+            
             <div className="pt-4">
               <h4 className="font-medium text-white mb-4">Follow Me</h4>
               <div className="flex space-x-5">
