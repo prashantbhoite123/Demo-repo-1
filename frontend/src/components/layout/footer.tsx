@@ -57,7 +57,7 @@ export function Footer() {
             ))}
           </div>
 
-          {/* Contact - Horizontal */}
+
           <div className="flex space-x-4 text-sm text-gray-400">
             <a href="mailto:vaishnavimane991@gmail.com" className="hover:text-white transition-colors">
               Email
@@ -69,7 +69,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom divider */}
         <div className="border-t border-gray-800 mt-6 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
           <p>
             © {currentYear} <span className="text-cyan-400">Vaishnavi Mane</span>. All rights reserved.
