@@ -38,7 +38,6 @@ export function HeroSection() {
             className="space-y-6 text-center lg:text-left"
           >
             <motion.h1
-
               className="text-5xl md:text-6xl font-black 
                 bg-gradient-to-r from-white via-sky-400 to-blue-600 
                 bg-clip-text text-transparent mb-6 drop-shadow-[0_0_20px_#00bfff]"
